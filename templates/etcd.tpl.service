@@ -1,0 +1,39 @@
+#jinja2: lstrip_blocks: True, trim_blocks: True
+[Unit]
+Description=etcd key-value store
+Documentation=https://github.com/etcd-io/etcd
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ __etcd_user }}
+Type=notify
+ExecStart={{ __etcd_binary }} \
+    --name={{ etcd_node_name }} \
+    --logger=zap \
+    --data-dir={{ __etcd_data_dir }} \
+    --cert-file={{ __etcd_pki_tls_cert }} \
+    --key-file={{ __etcd_pki_tls_key }} \
+    --peer-cert-file={{ __etcd_pki_tls_cert }} \
+    --peer-key-file={{ __etcd_pki_tls_key }} \
+    --trusted-ca-file={{ __etcd_pki_ca_cert }} \
+    --peer-trusted-ca-file={{ __etcd_pki_ca_cert }} \
+    --peer-client-cert-auth \
+    --client-cert-auth \
+    --listen-peer-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_peer_port }} \
+    --listen-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }},https://127.0.0.1:{{ __etcd_listen_client_port }} \
+    --advertise-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }} \
+    --initial-advertise-peer-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_peer_port }} \
+    --initial-cluster-token etcd-cluster-0 \
+    --initial-cluster {{ _etcd_initial_cluster }} \
+    --initial-cluster-state new
+TimeoutStartSec=600
+TimeoutStopSec=60
+Restart=always
+RestartSec=10s
+KillMode=process
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+Alias=etcd.service

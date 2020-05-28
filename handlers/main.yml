@@ -1,0 +1,17 @@
+---
+
+- name: "etcd-reload-systemd"
+  shell:
+    cmd: "systemctl daemon-reload"
+  args:
+    warn: no
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: yes
+
+- name: "etcd-restart-service"
+  service:
+    name: "{{ __etcd_service }}"
+    state: restarted
+    enabled: yes
+  become: yes
