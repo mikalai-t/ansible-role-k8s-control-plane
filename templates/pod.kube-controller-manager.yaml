@@ -73,3 +73,4 @@ spec:
     - name: logfile
       hostPath:
         path: /var/log/kube-controller-manager.log
+        type: "FileOrCreate"

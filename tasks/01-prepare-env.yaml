@@ -22,3 +22,9 @@
     - "{{ __control_plane_pki_dir }}"
     - "{{ __control_plane_manifests_dir }}"
     - "{{ __control_plane_data_dir }}"
+
+- name: "01.3 - make sure necessary Python modules are installed"
+  pip:
+    name: openshift
+    state: present
+  become: yes
