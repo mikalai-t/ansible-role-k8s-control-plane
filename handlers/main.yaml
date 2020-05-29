@@ -15,3 +15,10 @@
     state: restarted
     enabled: yes
   become: yes
+
+- name: "control-plane-restart-kube-controller-manager-service"
+  service:
+    name: "{{ __control_plane_kube_controller_manager_service }}"
+    state: restarted
+    enabled: yes
+  become: yes

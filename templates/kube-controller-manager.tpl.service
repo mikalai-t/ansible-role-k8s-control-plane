@@ -1,0 +1,41 @@
+#jinja2: lstrip_blocks: True, trim_blocks: True
+[Unit]
+Description=Kubernetes Controller Manager
+Documentation=https://github.com/kubernetes/kubernetes
+After=network.target network-online.target etcd.service
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart={{ __control_plane_kube_controller_manager_binary }} \
+  --authentication-kubeconfig="{{ __control_plane_manifests_kube_controller_manager_kubeconfig_file }}" \
+  --authorization-kubeconfig="{{ __control_plane_manifests_kube_controller_manager_kubeconfig_file }}" \
+  --bind-address="0.0.0.0" \
+  --cluster-cidr="10.200.0.0/16" \
+  --cluster-name="{{ control_plane_kubernetes_cluster_name }}" \
+  --cluster-signing-cert-file="{{ __control_plane_pki_ca_cert_file }}" \
+  --cluster-signing-key-file="{{ __control_plane_pki_ca_key_file }}" \
+  --kubeconfig="{{ __control_plane_manifests_kube_controller_manager_kubeconfig_file }}" \
+  --leader-elect="true" \
+  --log-file="/var/log/kube-controller-manager.log" \
+  --logtostderr="false" \
+  --profiling="false" \
+  --requestheader-client-ca-file="{{ __control_plane_pki_ca_cert_file }}" \
+  --root-ca-file="{{ __control_plane_pki_ca_cert_file }}" \
+  --service-account-private-key-file="{{ __control_plane_pki_service_account_key_file }}" \
+  --service-cluster-ip-range="10.32.0.0/24" \
+  --tls-cert-file="{{ __control_plane_pki_kube_controller_manager_cert_file }}" \
+  --tls-min-version="VersionTLS12" \
+  --tls-private-key-file="{{ __control_plane_pki_kube_controller_manager_key_file }}" \
+  --use-service-account-credentials="true" \
+  --v="2"
+TimeoutStartSec=600
+TimeoutStopSec=60
+Restart=always
+RestartSec=10s
+KillMode=process
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+Alias={{ __control_plane_kube_controller_manager_service }}.service

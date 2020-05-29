@@ -4,6 +4,8 @@ __control_plane_play_dir: /node-init
 
 __control_plane_kubectl_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kubectl"
 __control_plane_kube_apiserver_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-apiserver"
+__control_plane_kube_controller_manager_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-controller-manager"
+__control_plane_kube_scheduler_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-scheduler"
 
 __control_plane_user: root
 __control_plane_group: root
@@ -11,10 +13,14 @@ __control_plane_group: root
 __control_plane_install_dir: /usr/local/bin
 __control_plane_kubectl_binary: "{{ __control_plane_install_dir }}/kubectl"
 __control_plane_kube_apiserver_binary: "{{ __control_plane_install_dir }}/kube-apiserver"
+__control_plane_kube_controller_manager_binary: "{{ __control_plane_install_dir }}/kube-controller-manager"
+__control_plane_kube_scheduler_binary: "{{ __control_plane_install_dir }}/kube-scheduler"
 
 __control_plane_systemd_dir: /lib/systemd/system
 __control_plane_kube_apiserver_service: kube-apiserver
-__control_plane_kube_apiserver_systemd_unit: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_apiserver_service }}.service"
+__control_plane_kube_apiserver_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_apiserver_service }}.service"
+__control_plane_kube_controller_manager_service: kube-controller-manager
+__control_plane_kube_controller_manager_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_controller_manager_service }}.service"
 
 __control_plane_config_dir: /etc/kubernetes
 __control_plane_encryption_config_file: "{{ __control_plane_config_dir }}/encryption-config.yaml"

@@ -10,10 +10,10 @@
   loop_control:
     extended: yes
 
-- name: "05.2 - template Kubernetes API systemd unit"
+- name: "05.2 - template Kubernetes API unit-file"
   template:
     src: kube-apiserver.tpl.service
-    dest: "{{ __control_plane_kube_apiserver_systemd_unit }}"
+    dest: "{{ __control_plane_kube_apiserver_systemd_unit_file }}"
   become: yes
   notify:
     - control-plane-reload-systemd

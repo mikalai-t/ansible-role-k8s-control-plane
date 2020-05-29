@@ -45,4 +45,4 @@ LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
-Alias=kube-apiserver.service
+Alias={{ __control_plane_kube_apiserver_service }}.service
