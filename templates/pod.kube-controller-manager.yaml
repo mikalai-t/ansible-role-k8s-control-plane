@@ -5,8 +5,8 @@ kind: Pod
 metadata:
   name: kube-controller-manager
   namespace: kube-system
-  annotations:
-    seccomp.security.alpha.kubernetes.io/pod: "docker/default"
+#  annotations:
+#    seccomp.security.alpha.kubernetes.io/pod: "docker/default"
   labels:
     k8s-app: kube-controller-manager
     tier: control-plane
