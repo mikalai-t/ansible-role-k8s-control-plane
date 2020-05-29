@@ -7,3 +7,5 @@
 - include_tasks: 03-configure-authentication.yml
 
 - include_tasks: 04-configure-encryption.yml
+
+- include_tasks: 05-setup-kube-apiserver.yml
