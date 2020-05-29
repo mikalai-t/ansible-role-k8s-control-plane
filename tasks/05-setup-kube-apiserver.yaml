@@ -1,7 +1,7 @@
 ---
 
 # assume etcd cluster is deployed on the same master nodes as Kubernetes API service
-- name: "05.1 - set variable combining ip of etcd cluster nodes"
+- name: "05.1 - set variable combining ips of etcd cluster nodes"
   set_fact:
     # we need to get a string value, like:
     #   "https://10.0.0.1:2380,https://10.0.0.2:2380"

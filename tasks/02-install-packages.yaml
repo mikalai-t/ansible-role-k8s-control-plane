@@ -1,6 +1,6 @@
 ---
 
-- name: "02.1 - make sure necessary packages are installed"
+- name: "02.1 - make sure necessary system packages are installed"
   apt:
     name:
       - ca-certificates
@@ -12,7 +12,7 @@
     state: present
   become: yes
 
-- name: "02.2 - make sure PIP is upgraded to the latest version"
+- name: "02.2 - make sure pip is upgraded to the latest version"
   pip:
     name: pip
     state: latest
@@ -24,7 +24,7 @@
     state: present
   become: yes
 
-- name: "02.4 - download kubernetes binaries"
+- name: "02.4 - download Kubernetes binaries"
   get_url:
     url: "{{ item }}"
     dest: "{{ __control_plane_play_dir }}/{{ item | urlsplit('path') | basename }}"
@@ -32,7 +32,7 @@
     - "{{ __control_plane_kubectl_download_url }}"
     - "{{ __control_plane_kube_apiserver_download_url }}"
 
-- name: "02.5 - install kubernetes binaries"
+- name: "02.5 - install Kubernetes binaries"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
