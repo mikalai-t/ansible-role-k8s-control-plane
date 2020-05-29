@@ -8,7 +8,6 @@
     group: "{{ __control_plane_group }}"
     mode: "ug=rwX,o-rwx"
   become: yes
-  no_log: yes
   loop_control:
     label: "{{ item.dest | basename }}"
   loop:
@@ -44,7 +43,6 @@
     owner: "{{ __control_plane_user }}"
     group: "{{ __control_plane_group }}"
   become: yes
-  no_log: yes
   loop_control:
     label: "{{ item.dest | basename }}"
   loop:

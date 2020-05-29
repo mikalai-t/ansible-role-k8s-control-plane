@@ -1,6 +1,15 @@
 ---
 
-- name: "01.1 - make sure kubernetes directories exist"
+- name: "01.1 - make sure base play directory exists and world writable"
+  file:
+    path: "{{ __control_plane_play_dir }}"
+    state: directory
+    owner: 0
+    group: 0
+    mode: "a=rwX"
+  become: yes
+
+- name: "01.2 - make sure kubernetes directories exist"
   file:
     path: "{{ item }}"
     state: directory

@@ -3,7 +3,7 @@
 - name: "02.1 - download kubernetes binaries"
   get_url:
     url: "{{ item }}"
-    dest: "{{ lookup('env', 'HOME') }}/{{ item | urlsplit('path') | basename }}"
+    dest: "{{ __control_plane_play_dir }}/{{ item | urlsplit('path') | basename }}"
   loop:
     - "{{ __control_plane_kubectl_download_url }}"
     - "{{ __control_plane_kube_apiserver_download_url }}"
@@ -18,7 +18,7 @@
     mode: "0755"
   become: yes
   loop:
-    - src: "{{ lookup('env', 'HOME') }}/{{ __control_plane_kubectl_download_url | urlsplit('path') | basename }}"
+    - src: "{{ __control_plane_play_dir }}/{{ __control_plane_kubectl_download_url | urlsplit('path') | basename }}"
       dest: "{{ __control_plane_kubectl_binary }}"
-    - src: "{{ lookup('env', 'HOME') }}/{{ __control_plane_kube_apiserver_download_url | urlsplit('path') | basename }}"
+    - src: "{{ __control_plane_play_dir }}/{{ __control_plane_kube_apiserver_download_url | urlsplit('path') | basename }}"
       dest: "{{ __control_plane_kube_apiserver_binary }}"
