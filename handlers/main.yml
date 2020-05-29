@@ -1,6 +1,6 @@
 ---
 
-- name: "etcd-reload-systemd"
+- name: "control-plane-reload-systemd"
   shell:
     cmd: "systemctl daemon-reload"
   args:
@@ -9,9 +9,9 @@
     DEBIAN_FRONTEND: noninteractive
   become: yes
 
-- name: "etcd-restart-service"
+- name: "control-plane-restart-kube-apiserver-service"
   service:
-    name: "{{ __etcd_service }}"
+    name: "{{ __control_plane_kube_apiserver_service }}"
     state: restarted
     enabled: yes
   become: yes

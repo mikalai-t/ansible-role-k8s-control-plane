@@ -1,0 +1,13 @@
+#jinja2: lstrip_blocks: True, trim_blocks: True
+---
+apiVersion: v1
+kind: EncryptionConfig
+resources:
+  - resources:
+      - secrets
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: {{ _encryption_key_b64 }}
+      - identity: {}

@@ -1,0 +1,16 @@
+---
+
+# Kubernetes stores a variety of data including cluster state, application configurations, and secrets. Kubernetes
+# supports the ability to encrypt cluster data at rest (https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data).
+
+- name: "04.1 - generate random key"
+  set_fact:
+    _encryption_key_b64: "{{ (65535 | random(seed=inventory_hostname) | to_uuid)[0:31] | base64encode }}"
+
+- name: "04.2 - template 'encryption at rest' config"
+  template:
+    src: encryption-config.tpl.yaml
+    dest: "{{ __control_plane_encryption_config_file }}"
+    owner: "{{ __control_plane_user }}"
+    group: "{{ __control_plane_group }}"
+  become: yes

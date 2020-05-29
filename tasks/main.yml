@@ -5,3 +5,5 @@
 - include_tasks: 02-install-packages.yml
 
 - include_tasks: 03-configure-authentication.yml
+
+- include_tasks: 04-configure-encryption.yml

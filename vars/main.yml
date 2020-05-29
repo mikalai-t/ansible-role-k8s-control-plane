@@ -13,28 +13,31 @@ __control_plane_kubectl_binary: "{{ __control_plane_install_dir }}/kubectl"
 __control_plane_kube_apiserver_binary: "{{ __control_plane_install_dir }}/kube-apiserver"
 
 __control_plane_systemd_dir: /lib/systemd/system
-__control_plane_apiserver_service: kube-apiserver
-__control_plane_apiserver_systemd_unit: "{{ __control_plane_systemd_dir }}/{{ __control_plane_apiserver_service }}.service"
+__control_plane_kube_apiserver_service: kube-apiserver
+__control_plane_kube_apiserver_systemd_unit: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_apiserver_service }}.service"
 
 __control_plane_config_dir: /etc/kubernetes
+__control_plane_encryption_config_file: "{{ __control_plane_config_dir }}/encryption-config.yaml"
 
 __control_plane_pki_dir: "{{ __control_plane_config_dir }}/pki"
-__control_plane_pki_ca_cert: "{{ __control_plane_pki_dir }}/ca.crt"
-__control_plane_pki_ca_key: "{{ __control_plane_pki_dir }}/ca.key"
-__control_plane_pki_api_server_cert: "{{ __control_plane_pki_dir }}/api-server.crt"
-__control_plane_pki_api_server_key: "{{ __control_plane_pki_dir }}/api-server.key"
-__control_plane_pki_service_account_cert: "{{ __control_plane_pki_dir }}/service-account.crt"
-__control_plane_pki_service_account_key: "{{ __control_plane_pki_dir }}/service-account.key"
-__control_plane_pki_admin_user_cert: "{{ __control_plane_pki_dir }}/admin-user.crt"
-__control_plane_pki_admin_user_key: "{{ __control_plane_pki_dir }}/admin-user.key"
-__control_plane_kube_controller_manager_cert: "{{ __control_plane_pki_dir }}/kube-controller-manager.crt"
-__control_plane_kube_controller_manager_key: "{{ __control_plane_pki_dir }}/kube-controller-manager.key"
-__control_plane_kube_scheduler_cert: "{{ __control_plane_pki_dir }}/kube-scheduler.crt"
-__control_plane_kube_scheduler_key: "{{ __control_plane_pki_dir }}/kube-scheduler.key"
+__control_plane_pki_ca_cert_file: "{{ __control_plane_pki_dir }}/ca.crt"
+__control_plane_pki_ca_key_file: "{{ __control_plane_pki_dir }}/ca.key"
+__control_plane_pki_api_server_cert_file: "{{ __control_plane_pki_dir }}/api-server.crt"
+__control_plane_pki_api_server_key_file: "{{ __control_plane_pki_dir }}/api-server.key"
+__control_plane_pki_service_account_cert_file: "{{ __control_plane_pki_dir }}/service-account.crt"
+__control_plane_pki_service_account_key_file: "{{ __control_plane_pki_dir }}/service-account.key"
+__control_plane_pki_admin_user_cert_file: "{{ __control_plane_pki_dir }}/admin-user.crt"
+__control_plane_pki_admin_user_key_file: "{{ __control_plane_pki_dir }}/admin-user.key"
+__control_plane_pki_kube_controller_manager_cert_file: "{{ __control_plane_pki_dir }}/kube-controller-manager.crt"
+__control_plane_pki_kube_controller_manager_key_file: "{{ __control_plane_pki_dir }}/kube-controller-manager.key"
+__control_plane_pki_kube_scheduler_cert_file: "{{ __control_plane_pki_dir }}/kube-scheduler.crt"
+__control_plane_pki_kube_scheduler_key_file: "{{ __control_plane_pki_dir }}/kube-scheduler.key"
 
 __control_plane_manifests_dir: "{{ __control_plane_config_dir }}/manifests"
-__control_plane_manifests_admin_user_config: "{{ __control_plane_manifests_dir }}/admin-user.yaml"
-__control_plane_manifests_kube_controller_manager_config: "{{ __control_plane_manifests_dir }}/kube-controller-manager.yaml"
-__control_plane_manifests_kube_scheduler_config: "{{ __control_plane_manifests_dir }}/kube-scheduler.yaml"
+__control_plane_manifests_admin_user_config_file: "{{ __control_plane_manifests_dir }}/admin-user.yaml"
+__control_plane_manifests_kube_controller_manager_config_file: "{{ __control_plane_manifests_dir }}/kube-controller-manager.yaml"
+__control_plane_manifests_kube_scheduler_config_file: "{{ __control_plane_manifests_dir }}/kube-scheduler.yaml"
 
 __control_plane_data_dir: /var/lib/kubernetes
+
+__control_plane_etcd_listen_client_port: 2379
