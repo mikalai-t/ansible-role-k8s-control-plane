@@ -1,0 +1,14 @@
+---
+
+- name: "06.1 - run after kube-controller-manager Pod manifest templating"
+  k8s:
+    host: "{{ control_plane_api_internal_endpoint }}"
+    ca_cert: "{{ __control_plane_pki_ca_cert_file }}"
+    client_cert: "{{ __control_plane_pki_admin_user_cert_file }}"
+    client_key: "{{ __control_plane_pki_admin_user_key_file }}"
+    validate_certs: yes
+    definition: "{{ lookup('template', 'pod.kube-controller-manager.yaml') }}"
+    state: present
+    wait: yes
+  become: yes
+
