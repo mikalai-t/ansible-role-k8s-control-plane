@@ -1,6 +1,30 @@
 ---
 
-- name: "02.1 - download kubernetes binaries"
+- name: "02.1 - make sure necessary packages are installed"
+  apt:
+    name:
+      - ca-certificates
+      - python3
+      - python3-pip
+      - python3-setuptools
+      - python-pip
+      - python-setuptools
+    state: present
+  become: yes
+
+- name: "02.2 - make sure PIP is upgraded to the latest version"
+  pip:
+    name: pip
+    state: latest
+  become: yes
+
+- name: "02.3 - install necessary Python modules"
+  pip:
+    name: openshift
+    state: present
+  become: yes
+
+- name: "02.4 - download kubernetes binaries"
   get_url:
     url: "{{ item }}"
     dest: "{{ __control_plane_play_dir }}/{{ item | urlsplit('path') | basename }}"
@@ -8,7 +32,7 @@
     - "{{ __control_plane_kubectl_download_url }}"
     - "{{ __control_plane_kube_apiserver_download_url }}"
 
-- name: "02.2 - install kubernetes binaries"
+- name: "02.5 - install kubernetes binaries"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
