@@ -5,7 +5,7 @@
 
 - name: "04.1 - generate random key"
   set_fact:
-    _encryption_key_b64: "{{ (65535 | random(seed=inventory_hostname) | to_uuid)[0:31] | b64encode }}"
+    _encryption_key_b64: "{{ (65535 | random(seed=inventory_hostname) | to_uuid)[0:32] | b64encode }}"
 
 - name: "04.2 - template 'encryption at rest' config"
   template:
