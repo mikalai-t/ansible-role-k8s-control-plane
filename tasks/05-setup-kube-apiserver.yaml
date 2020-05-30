@@ -6,7 +6,7 @@
     # we need to get a string value, like:
     #   "https://10.0.0.1:2380,https://10.0.0.2:2380"
     _etcd_cluster_nodes: "{{ _etcd_cluster_nodes|default('') + 'https://' + item + ':' + __control_plane_etcd_listen_client_port|string + (ansible_loop.last | ternary('', ',')) }}"
-  loop: "{{ control_plane_kubernetes_cluster_member_ips.split(',') }}"
+  loop: "{{ control_plane_kubernetes_cluster_master_ips.split(',') }}"
   loop_control:
     extended: yes
 

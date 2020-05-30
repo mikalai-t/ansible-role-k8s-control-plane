@@ -3,11 +3,14 @@
 control_plane_kubernetes_version: v1.15.3
 
 control_plane_kubernetes_cluster_name: "kubernetes"
-control_plane_kubernetes_cluster_member_names: ""
-control_plane_kubernetes_cluster_member_ips: ""
+control_plane_kubernetes_cluster_pod_cidr: ""
+control_plane_kubernetes_cluster_services_cidr: ""
 
-control_plane_node_name: ""
-control_plane_node_private_ip: ""
+control_plane_kubernetes_cluster_master_names: ""
+control_plane_kubernetes_cluster_master_ips: ""
+
+control_plane_node_name: "{{ ansible_hostname }}"
+control_plane_node_private_ip: "{{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0]) }}"
 
 control_plane_api_external_endpoint: ""
 control_plane_api_internal_endpoint: "https://127.0.0.1:6443"
