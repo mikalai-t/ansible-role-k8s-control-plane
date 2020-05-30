@@ -18,6 +18,7 @@
   notify:
     - control-plane-reload-systemd
     - control-plane-restart-kube-apiserver-service
+    - control-plane-wait-kube-apiserver-service
 
 - meta: flush_handlers
 
