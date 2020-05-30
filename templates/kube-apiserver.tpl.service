@@ -1,7 +1,7 @@
 #jinja2: lstrip_blocks: True, trim_blocks: True
 [Unit]
 Description=Kubernetes API Server
-Documentation=https://github.com/kubernetes/kubernetes
+Documentation=https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver
 After=network.target network-online.target etcd.service
 Wants=network-online.target
 Requires=etcd.service
@@ -31,7 +31,7 @@ ExecStart={{ __control_plane_kube_apiserver_binary }} \
   --kubelet-client-certificate="{{ __control_plane_pki_api_server_cert_file }}" \
   --kubelet-client-key="{{ __control_plane_pki_api_server_key_file }}" \
   --kubelet-https="true" \
-  --log-file="/var/log/kube-apiserver.log" \
+  --log-file="/var/log/{{ __control_plane_kube_apiserver_service }}.log" \
   --log-file-max-size="100" \
   --runtime-config="api/all" \
   --service-account-key-file="{{ __control_plane_pki_service_account_key_file }}" \

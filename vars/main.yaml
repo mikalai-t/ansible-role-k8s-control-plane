@@ -21,9 +21,14 @@ __control_plane_kube_apiserver_service: kube-apiserver
 __control_plane_kube_apiserver_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_apiserver_service }}.service"
 __control_plane_kube_controller_manager_service: kube-controller-manager
 __control_plane_kube_controller_manager_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_controller_manager_service }}.service"
+__control_plane_kube_scheduler_service: kube-scheduler
+__control_plane_kube_scheduler_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_scheduler_service }}.service"
 
 __control_plane_config_dir: /etc/kubernetes
 __control_plane_encryption_config_file: "{{ __control_plane_config_dir }}/encryption-config.yaml"
+__control_plane_admin_user_kubeconfig_file: "{{ __control_plane_config_dir }}/admin-user.kubeconfig"
+__control_plane_kube_controller_manager_kubeconfig_file: "{{ __control_plane_config_dir }}/kube-controller-manager.kubeconfig"
+__control_plane_kube_scheduler_kubeconfig_file: "{{ __control_plane_config_dir }}/kube-scheduler.kubeconfig"
 
 __control_plane_pki_dir: "{{ __control_plane_config_dir }}/pki"
 __control_plane_pki_ca_cert_file: "{{ __control_plane_pki_dir }}/ca.crt"
@@ -40,10 +45,6 @@ __control_plane_pki_kube_scheduler_cert_file: "{{ __control_plane_pki_dir }}/kub
 __control_plane_pki_kube_scheduler_key_file: "{{ __control_plane_pki_dir }}/kube-scheduler.key"
 
 __control_plane_manifests_dir: "{{ __control_plane_config_dir }}/manifests"
-__control_plane_manifests_admin_user_kubeconfig_file: "{{ __control_plane_manifests_dir }}/admin-user.kubeconfig.yaml"
-__control_plane_manifests_kube_controller_manager_kubeconfig_file: "{{ __control_plane_manifests_dir }}/kube-controller-manager.kubeconfig.yaml"
-__control_plane_manifests_kube_controller_manager_pod_file: "{{ __control_plane_manifests_dir }}/kube-controller-manager.pod.yaml"
-__control_plane_manifests_kube_scheduler_kubeconfig_file: "{{ __control_plane_manifests_dir }}/kube-scheduler.kubeconfig.yaml"
 
 __control_plane_data_dir: /var/lib/kubernetes
 

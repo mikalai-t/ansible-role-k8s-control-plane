@@ -26,3 +26,10 @@
     state: restarted
     enabled: yes
   become: yes
+
+- name: "control-plane-restart-kube-scheduler-service"
+  service:
+    name: "{{ __control_plane_kube_scheduler_service }}"
+    state: restarted
+    enabled: yes
+  become: yes

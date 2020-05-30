@@ -1,0 +1,19 @@
+---
+
+- name: "07.1 - template Kubernetes Scheduler unit-file"
+  template:
+    src: kube-scheduler.tpl.service
+    dest: "{{ __control_plane_kube_scheduler_systemd_unit_file }}"
+  become: yes
+  notify:
+    - control-plane-reload-systemd
+    - control-plane-restart-kube-scheduler-service
+
+- meta: flush_handlers
+
+- name: "07.2 - make sure Kubernetes Scheduler is started"
+  service:
+    name: "{{ __control_plane_kube_scheduler_service }}"
+    state: started
+    enabled: yes
+  become: yes

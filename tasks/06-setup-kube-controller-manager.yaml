@@ -1,15 +1,9 @@
 ---
 
-#- name: "06.1 - template kube-controller-manager Pod manifest"
-#  template:
-#    src: pod.kube-controller-manager.yaml
-#    dest: "{{ __control_plane_manifests_kube_controller_manager_pod_file }}"
-#  become: yes
-#
 #- name: "06.2 - make sure kube-controller-manager Pod is started"
 #  k8s:
 #    apply: yes
-#    kubeconfig: "{{ __control_plane_manifests_admin_user_kubeconfig_file }}"
+#    kubeconfig: "{{ __control_plane_admin_user_kubeconfig_file }}"
 #    src: "{{ __control_plane_manifests_kube_controller_manager_pod_file }}"
 #    state: present
 #    wait: yes
@@ -26,7 +20,7 @@
 
 - meta: flush_handlers
 
-- name: "05.3 - make sure Kubernetes Controller Manager service is started"
+- name: "06.2 - make sure Kubernetes Controller Manager is started"
   service:
     name: "{{ __control_plane_kube_controller_manager_service }}"
     state: started

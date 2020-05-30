@@ -10,7 +10,7 @@
   loop_control:
     extended: yes
 
-- name: "05.2 - template Kubernetes API unit-file"
+- name: "05.2 - template Kubernetes API Server unit-file"
   template:
     src: kube-apiserver.tpl.service
     dest: "{{ __control_plane_kube_apiserver_systemd_unit_file }}"
@@ -22,7 +22,7 @@
 
 - meta: flush_handlers
 
-- name: "05.3 - make sure Kubernetes API service is started"
+- name: "05.3 - make sure Kubernetes API Server is started"
   service:
     name: "{{ __control_plane_kube_apiserver_service }}"
     state: started
