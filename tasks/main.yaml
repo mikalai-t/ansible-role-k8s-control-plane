@@ -13,3 +13,5 @@
 - include_tasks: 06-setup-kube-controller-manager.yaml
 
 - include_tasks: 07-setup-kube-scheduler.yaml
+
+- include_tasks: 08-configure-kubelet-rbac.yaml

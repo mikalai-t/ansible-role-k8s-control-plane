@@ -8,11 +8,12 @@ Requires={{ __control_plane_kube_apiserver_service }}.service
 
 [Service]
 ExecStart={{ __control_plane_kube_scheduler_binary }} \
-    --alsologtostderr \
+    --alsologtostderr="true" \
     --authentication-kubeconfig="{{ __control_plane_kube_scheduler_kubeconfig_file }}" \
     --authentication-tolerate-lookup-failure="false" \
     --authorization-kubeconfig="{{ __control_plane_kube_scheduler_kubeconfig_file }}" \
     --bind-address="0.0.0.0" \
+    --client-ca-file="{{ __control_plane_pki_ca_cert_file }}" \
     --kubeconfig="{{ __control_plane_kube_scheduler_kubeconfig_file }}" \
     --leader-elect="true" \
     --log-file=/var/log/{{ __control_plane_kube_scheduler_service }}.log \

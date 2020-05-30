@@ -7,13 +7,13 @@ Wants=network-online.target
 Requires={{ __control_plane_kube_apiserver_service }}.service
 
 [Service]
-#Type=notify
 ExecStart={{ __control_plane_kube_controller_manager_binary }} \
-  --alsologtostderr \
+  --alsologtostderr="true" \
   --authentication-kubeconfig="{{ __control_plane_kube_controller_manager_kubeconfig_file }}" \
   --authentication-tolerate-lookup-failure="false" \
   --authorization-kubeconfig="{{ __control_plane_kube_controller_manager_kubeconfig_file }}" \
   --bind-address="0.0.0.0" \
+  --client-ca-file="{{ __control_plane_pki_ca_cert_file }}" \
   --cluster-cidr="{{ control_plane_kubernetes_cluster_pod_cidr }}" \
   --cluster-name="{{ control_plane_kubernetes_cluster_name }}" \
   --cluster-signing-cert-file="{{ __control_plane_pki_ca_cert_file }}" \

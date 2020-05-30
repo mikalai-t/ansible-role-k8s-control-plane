@@ -1,0 +1,20 @@
+---
+
+# Configure RBAC permissions to allow the Kubernetes API Server to access the Kubelet API on each worker node. Access
+# to the Kubelet API is required for retrieving metrics, logs, and executing commands in pods.
+
+- name: "08.1 - make sure [kube-apiserver-to-kubelet] ClusterRole is created"
+  k8s:
+    kubeconfig: "{{ __control_plane_admin_user_kubeconfig_file }}"
+    definition: "{{ lookup('file', 'kube-apiserver-to-kubelet-ClusterRole.yaml') }}"
+    apply: yes
+    state: present
+  become: yes
+
+- name: "08.2 - make sure [kube-apiserver-to-kubelet] ClusterRoleBinding is configured"
+  k8s:
+    kubeconfig: "{{ __control_plane_admin_user_kubeconfig_file }}"
+    definition: "{{ lookup('file', 'kube-apiserver-to-kubelet-ClusterRoleBinding.yaml') }}"
+    apply: yes
+    state: present
+  become: yes

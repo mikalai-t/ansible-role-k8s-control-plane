@@ -1,14 +1,5 @@
 ---
 
-#- name: "06.2 - make sure kube-controller-manager Pod is started"
-#  k8s:
-#    apply: yes
-#    kubeconfig: "{{ __control_plane_admin_user_kubeconfig_file }}"
-#    src: "{{ __control_plane_manifests_kube_controller_manager_pod_file }}"
-#    state: present
-#    wait: yes
-#  become: yes
-
 - name: "06.1 - template Kubernetes Controller Manager unit-file"
   template:
     src: kube-controller-manager.tpl.service

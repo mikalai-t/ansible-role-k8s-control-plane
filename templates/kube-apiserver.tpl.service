@@ -11,7 +11,7 @@ Type=notify
 ExecStart={{ __control_plane_kube_apiserver_binary }} \
   --advertise-address="{{ control_plane_node_private_ip }}" \
   --allow-privileged="true" \
-  --alsologtostderr \
+  --alsologtostderr="true" \
   --apiserver-count="{{ control_plane_kubernetes_cluster_master_ips.split(',') | length }}" \
   --audit-log-maxage="30" \
   --audit-log-maxbackup="3" \
