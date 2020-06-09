@@ -3,7 +3,7 @@
 control_plane_kubernetes_version: v1.15.3
 
 control_plane_kubernetes_cluster_name: "kubernetes"
-control_plane_kubernetes_cluster_pod_cidr: ""
+control_plane_kubernetes_cluster_cidr: ""
 control_plane_kubernetes_cluster_services_cidr: ""
 
 control_plane_kubernetes_cluster_master_names: ""
