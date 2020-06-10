@@ -55,14 +55,16 @@ metadata:
 data:
   Corefile: |
     .:53 {
+        log
         errors
         health
         ready
         kubernetes cluster.local in-addr.arpa ip6.arpa {
           pods insecure
+          upstream
           fallthrough in-addr.arpa ip6.arpa
         }
-        forward . 8.8.8.8 8.8.4.4
+        proxy . /etc/resolv.conf
         prometheus :9153
         cache 30
         loop
