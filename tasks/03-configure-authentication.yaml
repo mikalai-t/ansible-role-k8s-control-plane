@@ -46,9 +46,9 @@
   loop_control:
     label: "{{ item.dest }}"
   loop:
-    - src: admin-user.tpl.kubeconfig
+    - src: admin-user.kubeconfig.yaml
       dest: "{{ __control_plane_admin_user_kubeconfig_file }}"
-    - src: kube-controller-manager.tpl.kubeconfig
+    - src: kube-controller-manager.kubeconfig.yaml
       dest: "{{ __control_plane_kube_controller_manager_kubeconfig_file }}"
-    - src: kube-scheduler.tpl.kubeconfig
+    - src: kube-scheduler.kubeconfig.yaml
       dest: "{{ __control_plane_kube_scheduler_kubeconfig_file }}"

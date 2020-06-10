@@ -12,7 +12,7 @@
 
 - name: "05.2 - template Kubernetes API Server unit-file"
   template:
-    src: kube-apiserver.tpl.service
+    src: kube-apiserver.service
     dest: "{{ __control_plane_kube_apiserver_systemd_unit_file }}"
   become: yes
   notify:

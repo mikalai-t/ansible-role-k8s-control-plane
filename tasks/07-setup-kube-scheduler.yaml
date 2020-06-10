@@ -2,7 +2,7 @@
 
 - name: "07.1 - template Kubernetes Scheduler unit-file"
   template:
-    src: kube-scheduler.tpl.service
+    src: kube-scheduler.service
     dest: "{{ __control_plane_kube_scheduler_systemd_unit_file }}"
   become: yes
   notify:

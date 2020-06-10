@@ -9,7 +9,7 @@
 
 - name: "04.2 - template 'encryption at rest' config"
   template:
-    src: encryption-config.tpl.yaml
+    src: encryption-config.yaml
     dest: "{{ __control_plane_encryption_config_file }}"
     owner: "{{ __control_plane_user }}"
     group: "{{ __control_plane_group }}"
