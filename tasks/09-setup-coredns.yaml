@@ -1,0 +1,26 @@
+---
+
+# Deploy the DNS add-on which provides DNS based service discovery, backed by CoreDNS (https://coredns.io/), to
+# applications running inside the Kubernetes cluster.
+
+- name: "09.1 - wait until at least one node is ready"
+  shell:
+    cmd: "{{ __control_plane_kubectl_binary }} --kubeconfig={{ __control_plane_admin_user_kubeconfig_file }} get nodes 2>&1"
+  args:
+    warn: no
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: yes
+  register: _nodes
+  until:
+    - "'Ready' in _nodes.stdout"
+  retries: 30
+  delay: 60
+
+- name: "09.2 - make sure [CoreDNS] Deployment is applied"
+  k8s:
+    kubeconfig: "{{ __control_plane_admin_user_kubeconfig_file }}"
+    definition: "{{ lookup('template', 'coredns.yaml') }}"
+    apply: yes
+    state: present
+  become: yes
