@@ -15,7 +15,7 @@ control_plane_node_private_ip: "{{ ansible_default_ipv4.address | default(ansibl
 control_plane_api_external_endpoint: ""
 control_plane_api_internal_endpoint: "https://127.0.0.1:6443"
 
-control_plane_coredns_version: 1.6.9
+control_plane_coredns_version: 1.6.7
 
 
 #######

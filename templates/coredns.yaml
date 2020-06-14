@@ -61,10 +61,9 @@ data:
         ready
         kubernetes cluster.local in-addr.arpa ip6.arpa {
           pods insecure
-          upstream
           fallthrough in-addr.arpa ip6.arpa
         }
-        forward . /etc/resolv.conf
+        forward . 8.8.8.8 8.8.4.4
         prometheus :9153
         cache 30
         loop
