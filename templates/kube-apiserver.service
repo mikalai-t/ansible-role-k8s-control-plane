@@ -34,7 +34,7 @@ ExecStart={{ __control_plane_kube_apiserver_binary }} \
   --log-file="/var/log/{{ __control_plane_kube_apiserver_service }}.log" \
   --log-file-max-size="100" \
   --runtime-config="api/all=true" \
-  --service-account-key-file="{{ __control_plane_pki_service_account_cert_file }}" \
+  --service-account-key-file="{{ __control_plane_pki_service_account_pub_file }}" \
   --service-cluster-ip-range="{{ control_plane_kubernetes_cluster_services_cidr }}" \
   --service-node-port-range="30000-32767" \
   --tls-cert-file="{{ __control_plane_pki_kube_apiserver_cert_file }}" \

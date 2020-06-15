@@ -36,8 +36,8 @@ __control_plane_pki_admin_user_cert_file: "{{ __control_plane_pki_dir }}/admin-u
 __control_plane_pki_admin_user_key_file: "{{ __control_plane_pki_dir }}/admin-user.key"
 __control_plane_pki_kube_controller_manager_cert_file: "{{ __control_plane_pki_dir }}/kube-controller-manager.crt"
 __control_plane_pki_kube_controller_manager_key_file: "{{ __control_plane_pki_dir }}/kube-controller-manager.key"
-__control_plane_pki_service_account_cert_file: "{{ __control_plane_pki_dir }}/service-account.crt"
-__control_plane_pki_service_account_key_file: "{{ __control_plane_pki_dir }}/service-account.key"
+__control_plane_pki_service_account_pub_file: "{{ __control_plane_pki_dir }}/sa.pub"
+__control_plane_pki_service_account_key_file: "{{ __control_plane_pki_dir }}/sa.key"
 __control_plane_pki_kube_scheduler_cert_file: "{{ __control_plane_pki_dir }}/kube-scheduler.crt"
 __control_plane_pki_kube_scheduler_key_file: "{{ __control_plane_pki_dir }}/kube-scheduler.key"
 
