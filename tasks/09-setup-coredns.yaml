@@ -18,16 +18,25 @@
   retries: 30
   delay: "{{ 60 | random(start=10, step=5, seed=inventory_hostname) }}"
 
-- name: "09.2 - template CoreDNS manifest"
+- name: "09.2 - check if CoreDNS manifest is present"
+  stat:
+    path: "{{ __control_plane_manifests_dir }}/coredns.yaml"
+    get_attributes: no
+    get_checksum: no
+    get_mime: no
+  become: yes
+  register: _coredns_manifest_file
+
+- name: "09.3 - template CoreDNS manifest"
   template:
     src: coredns.yaml
     dest: "{{ __control_plane_manifests_dir }}/coredns.yaml"
   become: yes
 
-- name: "09.3 - apply CoreDNS Deployment"
+- name: "09.4 - apply CoreDNS Deployment"
   k8s:
     kubeconfig: "{{ __control_plane_admin_user_kubeconfig_file }}"
     src: "{{ __control_plane_manifests_dir }}/coredns.yaml"
-    apply: yes
+    apply: "{{ True if (_coredns_manifest_file.stat.exists is defined and _coredns_manifest_file.stat.exists) else False }}"
     state: present
   become: yes
