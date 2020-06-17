@@ -6,7 +6,6 @@ control_plane_kubernetes_cluster_name: "kubernetes"
 control_plane_kubernetes_cluster_cidr: ""
 control_plane_kubernetes_cluster_services_cidr: ""
 
-control_plane_kubernetes_cluster_master_names: ""
 control_plane_kubernetes_cluster_master_ips: ""
 
 control_plane_node_name: "{{ ansible_hostname }}"
@@ -15,21 +14,36 @@ control_plane_node_private_ip: "{{ ansible_default_ipv4.address | default(ansibl
 control_plane_api_external_endpoint: ""
 control_plane_api_internal_endpoint: "https://127.0.0.1:6443"
 
-control_plane_coredns_version: 1.6.7
-
-
 #######
 # PKI #
 #######
-control_plane_ca_cert: ""
-control_plane_ca_key: ""
-control_plane_kube_apiserver_cert: ""
-control_plane_kube_apiserver_key: ""
-control_plane_admin_user_cert: ""
-control_plane_admin_user_key: ""
-control_plane_kube_controller_manager_cert: ""
-control_plane_kube_controller_manager_key: ""
+# etcd-ca
+control_plane_etcd_ca_cert: ""
+# kubernetes-ca
+control_plane_kubernetes_ca_cert: ""
+control_plane_kubernetes_ca_key: ""
+# service account
 control_plane_service_account_pub: ""
 control_plane_service_account_key: ""
+# kube-apiserver
+control_plane_kube_apiserver_cert: ""
+control_plane_kube_apiserver_key: ""
+# kube-apiserver-etcd-client
+control_plane_kube_apiserver_etcd_client_cert: ""
+control_plane_kube_apiserver_etcd_client_key: ""
+# kube-apiserver-kubelet-client
+control_plane_kube_apiserver_kubelet_client_cert: ""
+control_plane_kube_apiserver_kubelet_client_key: ""
+# admin
+control_plane_admin_user_cert: ""
+control_plane_admin_user_key: ""
+# kube-controller-manager
+control_plane_kube_controller_manager_cert: ""
+control_plane_kube_controller_manager_key: ""
+# kube-scheduler
 control_plane_kube_scheduler_cert: ""
 control_plane_kube_scheduler_key: ""
+# front-proxy
+control_plane_front_proxy_ca_cert: ""
+control_plane_front_proxy_client_cert: ""
+control_plane_front_proxy_client_key: ""

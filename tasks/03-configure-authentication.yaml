@@ -11,30 +11,56 @@
   loop_control:
     label: "{{ item.dest }}"
   loop:
-    - content: "{{ control_plane_ca_cert }}"
-      dest: "{{ __control_plane_pki_ca_cert_file }}"
-    - content: "{{ control_plane_ca_key }}"
-      dest: "{{ __control_plane_pki_ca_key_file }}"
-    - content: "{{ control_plane_kube_apiserver_cert }}"
-      dest: "{{ __control_plane_pki_kube_apiserver_cert_file }}"
-    - content: "{{ control_plane_kube_apiserver_key }}"
-      dest: "{{ __control_plane_pki_kube_apiserver_key_file }}"
-    - content: "{{ control_plane_admin_user_cert }}"
-      dest: "{{ __control_plane_pki_admin_user_cert_file }}"
-    - content: "{{ control_plane_admin_user_key }}"
-      dest: "{{ __control_plane_pki_admin_user_key_file }}"
-    - content: "{{ control_plane_kube_controller_manager_cert }}"
-      dest: "{{ __control_plane_pki_kube_controller_manager_cert_file }}"
-    - content: "{{ control_plane_kube_controller_manager_key }}"
-      dest: "{{ __control_plane_pki_kube_controller_manager_key_file }}"
+      # etcd-ca
+    - content: "{{ control_plane_etcd_ca_cert }}"
+      dest: "{{ __control_plane_etcd_ca_cert_file }}"
+      # kubernetes-ca
+    - content: "{{ control_plane_kubernetes_ca_cert }}"
+      dest: "{{ __control_plane_kubernetes_ca_cert_file }}"
+    - content: "{{ control_plane_kubernetes_ca_key }}"
+      dest: "{{ __control_plane_kubernetes_ca_key_file }}"
+      # service account
     - content: "{{ control_plane_service_account_pub }}"
-      dest: "{{ __control_plane_pki_service_account_pub_file }}"
+      dest: "{{ __control_plane_service_account_pub_file }}"
     - content: "{{ control_plane_service_account_key }}"
-      dest: "{{ __control_plane_pki_service_account_key_file }}"
+      dest: "{{ __control_plane_service_account_key_file }}"
+      # kube-apiserver
+    - content: "{{ control_plane_kube_apiserver_cert }}"
+      dest: "{{ __control_plane_kube_apiserver_cert_file }}"
+    - content: "{{ control_plane_kube_apiserver_key }}"
+      dest: "{{ __control_plane_kube_apiserver_key_file }}"
+      # kube-apiserver-etcd-client
+    - content: "{{ control_plane_kube_apiserver_etcd_client_cert }}"
+      dest: "{{ __control_plane_kube_apiserver_etcd_client_cert_file }}"
+    - content: "{{ control_plane_kube_apiserver_etcd_client_key }}"
+      dest: "{{ __control_plane_kube_apiserver_etcd_client_key_file }}"
+      # kube-apiserver-kubelet-client
+    - content: "{{ control_plane_kube_apiserver_kubelet_client_cert }}"
+      dest: "{{ __control_plane_kube_apiserver_kubelet_client_cert_file }}"
+    - content: "{{ control_plane_kube_apiserver_kubelet_client_key }}"
+      dest: "{{ __control_plane_kube_apiserver_kubelet_client_key_file }}"
+      # admin
+    - content: "{{ control_plane_admin_user_cert }}"
+      dest: "{{ __control_plane_admin_user_cert_file }}"
+    - content: "{{ control_plane_admin_user_key }}"
+      dest: "{{ __control_plane_admin_user_key_file }}"
+      # kube-controller-manager
+    - content: "{{ control_plane_kube_controller_manager_cert }}"
+      dest: "{{ __control_plane_kube_controller_manager_cert_file }}"
+    - content: "{{ control_plane_kube_controller_manager_key }}"
+      dest: "{{ __control_plane_kube_controller_manager_key_file }}"
+      # kube-scheduler
     - content: "{{ control_plane_kube_scheduler_cert }}"
-      dest: "{{ __control_plane_pki_kube_scheduler_cert_file }}"
+      dest: "{{ __control_plane_kube_scheduler_cert_file }}"
     - content: "{{ control_plane_kube_scheduler_key }}"
-      dest: "{{ __control_plane_pki_kube_scheduler_key_file }}"
+      dest: "{{ __control_plane_kube_scheduler_key_file }}"
+      # front-proxy
+    - content: "{{ control_plane_front_proxy_ca_cert }}"
+      dest: "{{ __control_plane_front_proxy_ca_cert_file }}"
+    - content: "{{ control_plane_front_proxy_client_cert }}"
+      dest: "{{ __control_plane_front_proxy_client_cert_file }}"
+    - content: "{{ control_plane_front_proxy_client_key }}"
+      dest: "{{ __control_plane_front_proxy_client_key_file }}"
 
 - name: "03.2 - template authentication manifests"
   template:
