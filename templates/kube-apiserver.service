@@ -44,7 +44,7 @@ ExecStart={{ __control_plane_kube_apiserver_binary }} \
   --runtime-config="api/all=true" \
   --service-account-key-file="{{ __control_plane_service_account_pub_file }}" \
   --service-cluster-ip-range="{{ control_plane_kubernetes_cluster_services_cidr }}" \
-  --service-node-port-range="30000-32767" \
+  --service-node-port-range="{{ control_plane_k8s_cluster_service_node_port_range }}" \
   --tls-cert-file="{{ __control_plane_kube_apiserver_cert_file }}" \
   --tls-min-version="VersionTLS12" \
   --tls-private-key-file="{{ __control_plane_kube_apiserver_key_file }}" \
