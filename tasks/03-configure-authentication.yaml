@@ -54,6 +54,12 @@
       dest: "{{ __control_plane_kube_scheduler_cert_file }}"
     - content: "{{ control_plane_kube_scheduler_key }}"
       dest: "{{ __control_plane_kube_scheduler_key_file }}"
+      # kube-proxy
+    - content: "{{ control_plane_kube_proxy_cert }}"
+      dest: "{{ __control_plane_kube_proxy_cert_file }}"
+    - content: "{{ control_plane_kube_proxy_key }}"
+      dest: "{{ __control_plane_kube_proxy_key_file }}"
+      mode: "u=rwX,go-rwx"
       # front-proxy
     - content: "{{ control_plane_front_proxy_ca_cert }}"
       dest: "{{ __control_plane_front_proxy_ca_cert_file }}"
@@ -62,19 +68,10 @@
     - content: "{{ control_plane_front_proxy_client_key }}"
       dest: "{{ __control_plane_front_proxy_client_key_file }}"
 
-- name: "03.2 - template authentication manifests"
+- name: "03.2 - template Admin user authentication manifest"
   template:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: admin-user.kubeconfig.yaml
+    dest: "{{ __control_plane_admin_user_kubeconfig_file }}"
     owner: "{{ __control_plane_user }}"
     group: "{{ __control_plane_group }}"
   become: yes
-  loop_control:
-    label: "{{ item.dest }}"
-  loop:
-    - src: admin-user.kubeconfig.yaml
-      dest: "{{ __control_plane_admin_user_kubeconfig_file }}"
-    - src: kube-controller-manager.kubeconfig.yaml
-      dest: "{{ __control_plane_kube_controller_manager_kubeconfig_file }}"
-    - src: kube-scheduler.kubeconfig.yaml
-      dest: "{{ __control_plane_kube_scheduler_kubeconfig_file }}"

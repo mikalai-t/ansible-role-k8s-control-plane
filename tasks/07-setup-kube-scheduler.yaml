@@ -1,6 +1,14 @@
 ---
 
-- name: "07.1 - template Kubernetes Scheduler unit-file"
+- name: "07.1 - template Kubernetes Scheduler kubeconfig manifest"
+  template:
+    src: kube-scheduler.kubeconfig.yaml
+    dest: "{{ __control_plane_kube_scheduler_kubeconfig_file }}"
+  become: yes
+  notify:
+    - control-plane-restart-kube-scheduler-service
+
+- name: "07.2 - template Kubernetes Scheduler unit-file"
   template:
     src: kube-scheduler.service
     dest: "{{ __control_plane_kube_scheduler_systemd_unit_file }}"
@@ -11,7 +19,7 @@
 
 - meta: flush_handlers
 
-- name: "07.2 - make sure Kubernetes Scheduler is started"
+- name: "07.3 - make sure Kubernetes Scheduler is started"
   service:
     name: "{{ __control_plane_kube_scheduler_service }}"
     state: started

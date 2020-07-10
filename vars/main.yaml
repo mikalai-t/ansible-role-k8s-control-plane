@@ -6,6 +6,7 @@ __control_plane_kubectl_download_url: "https://storage.googleapis.com/kubernetes
 __control_plane_kube_apiserver_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-apiserver"
 __control_plane_kube_controller_manager_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-controller-manager"
 __control_plane_kube_scheduler_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-scheduler"
+__control_plane_kube_proxy_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ k8s_worker_kubernetes_version }}/bin/linux/amd64/kube-proxy"
 
 __control_plane_user: root
 __control_plane_group: root
@@ -15,6 +16,7 @@ __control_plane_kubectl_binary: "{{ __control_plane_install_dir }}/kubectl"
 __control_plane_kube_apiserver_binary: "{{ __control_plane_install_dir }}/kube-apiserver"
 __control_plane_kube_controller_manager_binary: "{{ __control_plane_install_dir }}/kube-controller-manager"
 __control_plane_kube_scheduler_binary: "{{ __control_plane_install_dir }}/kube-scheduler"
+__control_plane_kube_proxy_binary: "{{ __control_plane_install_dir }}/kube-proxy"
 
 __control_plane_systemd_dir: /lib/systemd/system
 __control_plane_kube_apiserver_service: kube-apiserver
@@ -23,9 +25,15 @@ __control_plane_kube_controller_manager_service: kube-controller-manager
 __control_plane_kube_controller_manager_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_controller_manager_service }}.service"
 __control_plane_kube_scheduler_service: kube-scheduler
 __control_plane_kube_scheduler_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_scheduler_service }}.service"
+__control_plane_kube_proxy_service: kube-proxy
+__control_plane_kube_proxy_systemd_unit_file: "{{ __control_plane_systemd_dir }}/{{ __control_plane_kube_proxy_service }}.service"
 
 __control_plane_config_dir: /etc/kubernetes
 __control_plane_encryption_config_file: "{{ __control_plane_config_dir }}/encryption-config.yaml"
+__control_plane_admin_user_kubeconfig_file: "{{ __control_plane_config_dir }}/admin-user.kubeconfig.yaml"
+__control_plane_kube_controller_manager_kubeconfig_file: "{{ __control_plane_config_dir }}/kube-controller-manager.kubeconfig.yaml"
+__control_plane_kube_scheduler_kubeconfig_file: "{{ __control_plane_config_dir }}/kube-scheduler.kubeconfig.yaml"
+__control_plane_kube_proxy_kubeconfig_file: "{{ __control_plane_config_dir }}/kube-proxy.kubeconfig"
 
 __control_plane_pki_dir: "{{ __control_plane_config_dir }}/pki"
 # etcd-ca
@@ -54,16 +62,18 @@ __control_plane_kube_controller_manager_key_file: "{{ __control_plane_pki_dir }}
 # kube-scheduler
 __control_plane_kube_scheduler_cert_file: "{{ __control_plane_pki_dir }}/kube-scheduler.crt"
 __control_plane_kube_scheduler_key_file: "{{ __control_plane_pki_dir }}/kube-scheduler.key"
+# kube-proxy
+__control_plane_kube_proxy_cert_file: "{{ __control_plane_pki_dir }}/kube-proxy.crt"
+__control_plane_kube_proxy_key_file: "{{ __control_plane_pki_dir }}/kube-proxy.key"
 # front-proxy
 __control_plane_front_proxy_ca_cert_file: "{{ __control_plane_pki_dir }}/front-proxy-ca.crt"
 __control_plane_front_proxy_client_cert_file: "{{ __control_plane_pki_dir }}/front-proxy-client.crt"
 __control_plane_front_proxy_client_key_file: "{{ __control_plane_pki_dir }}/front-proxy-client.key"
 
 __control_plane_manifests_dir: "{{ __control_plane_config_dir }}/manifests"
-__control_plane_admin_user_kubeconfig_file: "{{ __control_plane_manifests_dir }}/admin-user.kubeconfig.yaml"
-__control_plane_kube_controller_manager_kubeconfig_file: "{{ __control_plane_manifests_dir }}/kube-controller-manager.kubeconfig.yaml"
-__control_plane_kube_scheduler_kubeconfig_file: "{{ __control_plane_manifests_dir }}/kube-scheduler.kubeconfig.yaml"
+__control_plane_kube_proxy_config_file: "{{ __control_plane_manifests_dir }}/kube-proxy-config.yaml"
 
 __control_plane_data_dir: /var/lib/kubernetes
+__control_plane_kube_proxy_data_dir: /var/lib/kube-proxy
 
 __control_plane_etcd_listen_client_port: 2379

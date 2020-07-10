@@ -1,0 +1,35 @@
+---
+
+- name: "09.1 - template Kubernetes Proxy kubeconfig manifest"
+  template:
+    src: kube-proxy.kubeconfig
+    dest: "{{ __control_plane_kube_proxy_kubeconfig_file }}"
+  become: yes
+  notify:
+    - control-plane-restart-kube-proxy-service
+
+- name: "09.2 - template Kubernetes Proxy config-file"
+  template:
+    src: kube-proxy-config.yaml
+    dest: "{{ __control_plane_kube_proxy_config_file }}"
+  become: yes
+  notify:
+    - control-plane-restart-kube-proxy-service
+
+- name: "09.3 - template Kubernetes Proxy unit-file"
+  template:
+    src: kube-proxy.service
+    dest: "{{ __control_plane_kube_proxy_systemd_unit_file }}"
+  become: yes
+  notify:
+    - control-plane-reload-systemd
+    - control-plane-restart-kube-proxy-service
+
+- meta: flush_handlers
+
+- name: "09.4 - make sure Kubernetes Proxy is started"
+  service:
+    name: "{{ __control_plane_kube_proxy_service }}"
+    state: started
+    enabled: yes
+  become: yes

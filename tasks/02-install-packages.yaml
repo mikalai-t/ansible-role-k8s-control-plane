@@ -33,6 +33,7 @@
     - "{{ __control_plane_kube_apiserver_download_url }}"
     - "{{ __control_plane_kube_controller_manager_download_url }}"
     - "{{ __control_plane_kube_scheduler_download_url }}"
+    - "{{ __control_plane_kube_proxy_download_url }}"
 
 - name: "02.5 - install Kubernetes binaries"
   copy:
@@ -52,3 +53,5 @@
       dest: "{{ __control_plane_kube_controller_manager_binary }}"
     - src: "{{ __control_plane_play_dir }}/{{ __control_plane_kube_scheduler_download_url | urlsplit('path') | basename }}"
       dest: "{{ __control_plane_kube_scheduler_binary }}"
+    - src: "{{ __control_plane_play_dir }}/{{ __control_plane_kube_proxy_download_url | urlsplit('path') | basename }}"
+      dest: "{{ __control_plane_kube_proxy_binary }}"

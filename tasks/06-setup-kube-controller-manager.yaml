@@ -1,6 +1,14 @@
 ---
 
-- name: "06.1 - template Kubernetes Controller Manager unit-file"
+- name: "06.1 - template Kubernetes Controller Manager kubeconfig manifest"
+  template:
+    src: kube-controller-manager.kubeconfig.yaml
+    dest: "{{ __control_plane_kube_controller_manager_kubeconfig_file }}"
+  become: yes
+  notify:
+    - control-plane-restart-kube-controller-manager-service
+
+- name: "06.2 - template Kubernetes Controller Manager unit-file"
   template:
     src: kube-controller-manager.service
     dest: "{{ __control_plane_kube_controller_manager_systemd_unit_file }}"
@@ -11,7 +19,7 @@
 
 - meta: flush_handlers
 
-- name: "06.2 - make sure Kubernetes Controller Manager is started"
+- name: "06.3 - make sure Kubernetes Controller Manager is started"
   service:
     name: "{{ __control_plane_kube_controller_manager_service }}"
     state: started

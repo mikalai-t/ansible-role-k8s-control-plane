@@ -1,0 +1,21 @@
+#jinja2: lstrip_blocks: True, trim_blocks: True
+[Unit]
+Description=Kubernetes Kube-Proxy Server
+Documentation=https://kubernetes.io/docs/concepts/overview/components/#kube-proxy
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart={{ __control_plane_kube_proxy_binary }} \
+    --config="{{ __control_plane_kube_proxy_config_file }}"
+TimeoutStartSec=600
+TimeoutStopSec=60
+Restart=always
+RestartSec=10s
+KillMode=process
+OOMScoreAdjust=-999
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+Alias={{ __control_plane_kube_proxy_service }}.service
