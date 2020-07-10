@@ -45,8 +45,8 @@ control_plane_kube_controller_manager_key: ""
 control_plane_kube_scheduler_cert: ""
 control_plane_kube_scheduler_key: ""
 # kube-proxy
-controle_plane_kube_proxy_cert: ""
-controle_plane_kube_proxy_key: ""
+control_plane_kube_proxy_cert: ""
+control_plane_kube_proxy_key: ""
 # front-proxy
 control_plane_front_proxy_ca_cert: ""
 control_plane_front_proxy_client_cert: ""
