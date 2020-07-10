@@ -6,7 +6,7 @@ __control_plane_kubectl_download_url: "https://storage.googleapis.com/kubernetes
 __control_plane_kube_apiserver_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-apiserver"
 __control_plane_kube_controller_manager_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-controller-manager"
 __control_plane_kube_scheduler_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-scheduler"
-__control_plane_kube_proxy_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ k8s_worker_kubernetes_version }}/bin/linux/amd64/kube-proxy"
+__control_plane_kube_proxy_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ control_plane_kubernetes_version }}/bin/linux/amd64/kube-proxy"
 
 __control_plane_user: root
 __control_plane_group: root

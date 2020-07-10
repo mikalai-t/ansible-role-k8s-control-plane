@@ -1,6 +1,6 @@
 ---
 
-control_plane_kubernetes_version: v1.15.3
+control_plane_kubernetes_version: v1.18.4
 
 control_plane_kubernetes_cluster_name: "kubernetes"
 control_plane_kubernetes_cluster_cidr: "10.100.0.0/16"
