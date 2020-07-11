@@ -1,6 +1,6 @@
 ---
 
-control_plane_kubernetes_version: v1.18.4
+control_plane_kubernetes_version: v1.18.3
 
 control_plane_kubernetes_cluster_name: "kubernetes"
 control_plane_kubernetes_cluster_cidr: "10.100.0.0/16"
@@ -44,9 +44,6 @@ control_plane_kube_controller_manager_key: ""
 # kube-scheduler
 control_plane_kube_scheduler_cert: ""
 control_plane_kube_scheduler_key: ""
-# kube-proxy
-control_plane_kube_proxy_cert: ""
-control_plane_kube_proxy_key: ""
 # front-proxy
 control_plane_front_proxy_ca_cert: ""
 control_plane_front_proxy_client_cert: ""

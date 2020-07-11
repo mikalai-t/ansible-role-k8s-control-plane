@@ -54,12 +54,6 @@
       dest: "{{ __control_plane_kube_scheduler_cert_file }}"
     - content: "{{ control_plane_kube_scheduler_key }}"
       dest: "{{ __control_plane_kube_scheduler_key_file }}"
-      # kube-proxy
-    - content: "{{ control_plane_kube_proxy_cert }}"
-      dest: "{{ __control_plane_kube_proxy_cert_file }}"
-    - content: "{{ control_plane_kube_proxy_key }}"
-      dest: "{{ __control_plane_kube_proxy_key_file }}"
-      mode: "u=rwX,go-rwx"
       # front-proxy
     - content: "{{ control_plane_front_proxy_ca_cert }}"
       dest: "{{ __control_plane_front_proxy_ca_cert_file }}"

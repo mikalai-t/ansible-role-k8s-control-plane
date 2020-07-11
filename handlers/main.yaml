@@ -33,10 +33,3 @@
     state: restarted
     enabled: yes
   become: yes
-
-- name: "control-plane-restart-kube-proxy-service"
-  service:
-    name: "{{ __control_plane_kube_proxy_service }}"
-    state: restarted
-    enabled: yes
-  become: yes

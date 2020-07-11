@@ -22,4 +22,3 @@
     - "{{ __control_plane_pki_dir }}"
     - "{{ __control_plane_manifests_dir }}"
     - "{{ __control_plane_data_dir }}"
-    - "{{ __control_plane_kube_proxy_data_dir }}"
