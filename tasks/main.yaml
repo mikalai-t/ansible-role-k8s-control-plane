@@ -15,5 +15,3 @@
 - include_tasks: 07-setup-kube-scheduler.yaml
 
 - include_tasks: 08-configure-kubelet-rbac.yaml
-
-#- include_tasks: 09-setup-kube-proxy.yaml
