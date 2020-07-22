@@ -20,6 +20,7 @@ ExecStart={{ __control_plane_kube_apiserver_binary }} \
   --authorization-mode="Node,RBAC" \
   --bind-address="0.0.0.0" \
   --client-ca-file="{{ __control_plane_kubernetes_ca_cert_file }}" \
+  --enable-admission-plugins="PodSecurityPolicy" \
   --etcd-cafile="{{ __control_plane_etcd_ca_cert_file }}" \
   --etcd-certfile="{{ __control_plane_kube_apiserver_etcd_client_cert_file }}" \
   --etcd-keyfile="{{ __control_plane_kube_apiserver_etcd_client_key_file }}" \
